@@ -1,13 +1,15 @@
-function LetsPlot(x,y,BS)
 
 figure(1);
-scatter(x,y);
 hold;
 
-scatter(BS(1,1),BS(1,2),'r');
-scatter(BS(2,1),BS(2,2),'r');
-scatter(BS(3,1),BS(3,2),'r');
+txt_BS = ['A','B','C','D','E'];
+txt_M = ['1','2','3','4','5'];
 
-figure(2);
-
+for i = 1:N
+    scatter(x(i),y(i),'yellow');
+    text(x(i),y(i),txt_M(i));
+end
+for j = 1:no_BS
+    scatter(BS(j,1),BS(j,2),'r');
+    text(BS(j,1),BS(j,2),txt_BS(j));
 end

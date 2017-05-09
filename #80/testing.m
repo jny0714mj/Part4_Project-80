@@ -1,0 +1,9 @@
+DOWN(1,1) = 10*n*(log10(distance(1,1))-log10(distance(1,2)+distance(1,3)));
+DOWN(1,2) = 10*n*(log10(distance(1,2))-log10(distance(1,1)+distance(1,3)));
+DOWN(1,3) = 10*n*(log10(distance(1,3))-log10(distance(1,1)+distance(1,2)));
+DOWN(2,1) = 10*n*(log10(distance(2,1))-log10(distance(2,2)+distance(2,3)));
+DOWN(2,2) = 10*n*(log10(distance(2,2))-log10(distance(2,1)+distance(2,3)));
+DOWN(2,3) = 10*n*(log10(distance(2,3))-log10(distance(2,1)+distance(2,2)));
+DOWN(3,1) = 10*n*(log10(distance(3,1))-log10(distance(3,2)+distance(3,3)));
+DOWN(3,2) = 10*n*(log10(distance(3,2))-log10(distance(3,1)+distance(3,3)));
+DOWN(3,3) = 10*n*(log10(distance(3,3))-log10(distance(3,2)+distance(3,1)));

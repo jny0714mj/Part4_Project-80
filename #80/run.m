@@ -1,6 +1,7 @@
-function [] = run()
 
-N = 20;
+N = 3; %number of mobiles
+no_BS = 3;%number of base station
+
 
 %create random mobile position
 [x,y] = create_mobile(N);
@@ -16,8 +17,6 @@ BS = [10,20;
 %calculate the distance between each base station and mobile
 distance = GetDistance(x,y,N,BS,no_BS);
 
-[DOWN,UP] = GetSIR(distance,N,no_BS);
-temp = getConnection(distance,N);
-LetsPlot(x,y,BS);
-
-end
+%[DOWN,UP] = GetSIR(distance,N,no_BS);
+%temp = getConnection(distance,N);
+LetsPlot;
