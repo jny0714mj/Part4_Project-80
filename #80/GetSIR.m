@@ -1,4 +1,4 @@
-function [DOWN,UP] = GetSIR(distance,N,no_BS)
+function [Down] = GetSIR(distance,N,no_BS)
 
 PT1 = 10;
 PT2 = 10;
@@ -22,15 +22,18 @@ end
 if (no_BS == N)
     for i = 1:no_BS
         for j = 1:N
-            a =0;
+            a =(1/distance(j,i))^n;
+            b = 0;
             % DOWN(i,j) = log10(distance(j,i))+ DOWN(i,j);
             for k = 1:N
                 if (k ~= j)
-                    a = a + (1/distance(k,i));
+                    b = b + (1/(distance(k,i)))^2;
                     %DOWN(i,j)=DOWN(i,j) - log10(distance(k,i));
                 end
             end
-            DOWN(i,j) = 10*n*(log10((1/distance(j,i)))-log10(a));
+            DOWN(i,j) = a/b;
+            %DOWN(i,j) = 10*n*(log10((1/distance(j,i)))-log10(a));
+            Down = 10*log10(DOWN);
         end
     end
 end

@@ -9,8 +9,8 @@ no_BS = 3;%number of base station
 %setting the base station location
 %BS = [x1, y1; - base station 1
 %      x2, y2] - base station 2
-BS = [10,20;
-      15,5;
+BS = [30,20;
+      50,60;
       60,70;
       30,50];
 
