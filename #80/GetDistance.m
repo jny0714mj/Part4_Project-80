@@ -9,7 +9,7 @@ distance = zeros(no_BS,N);
 
 for i = 1:N %number of mobiles %row
     for j = 1:no_BS %number of base_station %column
-        distance(i,j) = sqrt((x(j) - BS(i,1)) ^2 + (y(j) - BS(i,2)) ^2);
+        distance(j,i) = sqrt((x(i) - BS(j,1)) ^2 + (y(i) - BS(j,2)) ^2);
     end
 end
 

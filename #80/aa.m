@@ -1,17 +1,16 @@
 tmp = zeros(no_BS,1);
 tmp = [distance tmp];
-DOWN = zeros(no_BS,no_BS);
-
-for i = 1:no_BS
+temp = zeros(no_BS,no_BS);
+n = 2;
+for i = 1:N
     for j = 1:no_BS
-        a =0;
-        % DOWN(i,j) = log10(distance(j,i))+ DOWN(i,j);
-        for k = 1:N
+        a =(1/distance(j,i))^n;
+        b = 0;
+        for k = 1:no_BS
             if (k ~= j)
-                a = a + tmp(k,i);
-                %DOWN(i,j)=DOWN(i,j) - log10(distance(k,i));
+                b = b + distance(k,i);
             end
         end
-        DOWN(i,j) = 10*n*(log10(tmp(j,i))-log10(a));
+        temp(i,j) = b;
     end
 end
