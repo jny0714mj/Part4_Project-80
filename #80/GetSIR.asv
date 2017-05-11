@@ -35,15 +35,14 @@ if (no_BS ~= N)
         this(l,:) = [];
         for i = 1:N
             for j = 1:N
-                a =(1/this(j,i))^n;
+                a =(1/distance(j,i))^n;
                 b = 0;
                 for k = 1:N
                     if (k ~= j)
-                        b = b + (1/(this(k,i)))^n;
+                        b = b + this(k,i);
                     end
                 end
-                DOWN(i,j,l) = a/b;
-                Down = 10*log10(DOWN);
+                DOWN(i,j,l) = b;
             end
         end
     end
