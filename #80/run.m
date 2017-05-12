@@ -1,6 +1,6 @@
 
 N = 3; %number of mobiles
-no_BS = 4;%number of base station
+no_BS = 3;%number of base station
 
 
 %create random mobile position
