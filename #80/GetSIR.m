@@ -1,9 +1,14 @@
+
 PT1 = 10;
 PT2 = 10;
-n = 2; %at free space (n value varies)
+n = 3; %at free space (n value varies)
 %create empty array size of N
-
-DOWN = zeros(N,N,no_BS); %temp size = 2
+if (no_BS == N)
+    DOWN = zeros(N,N); %temp size = 2
+end
+if (no_BS ~=N)
+    DOWN = zeros(N,N,no_BS);
+end
 UP = zeros(1,2);
 
 
@@ -29,7 +34,7 @@ if (no_BS == N)
     end
 end
 
-if (no_BS ~= N)
+if (no_BS ~=N)
     for l =  1:no_BS
         this = distance;
         this(l,:) = [];
