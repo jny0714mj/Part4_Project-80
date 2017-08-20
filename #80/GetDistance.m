@@ -1,4 +1,4 @@
-function [distance] = GetDistance(x,y,N,BS,no_BS)
+function [distance] = GetDistance(x,y,N,BS_X,BS_Y,no_BS)
 
 %set distance array
 %distance(N,1) -> for base-station 1 Nth mobile
@@ -13,7 +13,7 @@ distance = zeros(no_BS,N);
 
 for i = 1:N %number of mobiles %row
     for j = 1:no_BS %number of base_station %column
-        distance(j,i) = sqrt((x(i) - BS(j,1)) ^2 + (y(i) - BS(j,2)) ^2);
+        distance(j,i) = sqrt((x(i) - BS_X(j)) ^2 + (y(i) - BS_Y(j)) ^2);
     end
 end
 

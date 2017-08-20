@@ -4,7 +4,7 @@ new = zeros(no_BS,no_BS);
 for i = 1:no_BS
     for j = 1:N
        FSLP = ((4 * pi * distance(i,j))/wavelength);
-       new(i,j) =  DOWN(i,j) - log10(FSLP);
+       new(i,j) =  Down(i,j) - log10(FSLP);
     end
 end
 
@@ -19,7 +19,8 @@ newww = zeros(no_BS,no_BS);
 for i = 1:3
     for j = 1:3
         Lp2(i,j) = 46.3+33.9*log10(fc)-13.82*log10(hb)-A_hm+(44.9-6.55*log10(hb))*log10(distance(i,j)/1000)+3;
-        newww(i,j) = DOWN(i,j) - log10(Lp2(i,j));
+        Lp2 = log10(Lp2);
+        newww(i,j) = Down(i,j) - (Lp2(i,j));
     end
 end
 
