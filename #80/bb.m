@@ -1,35 +1,35 @@
-wavelength = (3 * 10^8)/(150 * 10^6);
-new = zeros(no_BS,no_BS);
+
+[low, l_index] = min(vals, [], 1);
+[high, h_index] = max(vals, [], 1);
 
 for i = 1:no_BS
-    for j = 1:N
-       FSLP = ((4 * pi * distance(i,j))/wavelength);
-       new(i,j) =  Down(i,j) - log10(FSLP);
-    end
+   if (h_index == i)
+       highest = nSIR(i,idx(i));
+   elseif (l_index == i)
+       lowest = nSIR(i,idx(i));
+   else
+       middle = i;
+   end
 end
 
 
-hm = 1.5;
-fc = 150;
-hb = 10;
-A_hm = ((1.1*log10(fc))-0.7)*hm -(1.56*log10(fc)-0.8);
 
-Lp2 = zeros(3,3);
-newww = zeros(no_BS,no_BS);
-for i = 1:3
-    for j = 1:3
-        Lp2(i,j) = 46.3+33.9*log10(fc)-13.82*log10(hb)-A_hm+(44.9-6.55*log10(hb))*log10(distance(i,j)/1000)+3;
-        Lp2 = log10(Lp2);
-        newww(i,j) = Down(i,j) - (Lp2(i,j));
-    end
+thatratio = lowest/highest;
+a = new_p(h_index).^2;
+b = new_p(h_index)*new_p(middle);
+c = new_p(l_index).^2 + new_p(l_index)*new_p(middle);
+p = [a b -c*thatratio];
+r = roots(p);
+for i = 1:2
+   if r(i) > 0
+   %    disp('tawse');
+   %    disp(r(i));
+       new_p(h_index) = r(i);
+   end
 end
+nSIR =  Downlink(no_BS,N,distance,n,new_p);
+disp(10*log10(nSIR));
+disp(new_p);
 
-thresh = 0;
 
-for i = 1:no_BS
-    for j = 1:N
-        
-    end
-    
-end
-    
+[vals,idx] = getConnection(nSIR,no_BS);

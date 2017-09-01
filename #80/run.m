@@ -4,7 +4,7 @@ prop = zeros(runtime,1);
 for i = 1:runtime
     N = 3; %number of mobiles
     no_BS = 3;%number of base station
-    n = 3; %at free space (n value varies)
+    n = 2; %at free space (n value varies)
     
     %create random mobile position
     [x,y] = create_mobile(N,0);
@@ -21,11 +21,12 @@ for i = 1:runtime
     %SIR = Uplink(no_BS,N,distance,n);
     SIR = Downlink(no_BS,N,distance,n,power);
     
-    outp = Outage(SIR,no_BS);
-    prop(i) = outp;
+   % outp = Outage(SIR,no_BS);
+    %prop(i) = outp;
     A = SIR;
-    
+    nSIR = SIR;
     [vals,idx] = getConnection(A,no_BS);
+    new_p = ones(1,no_BS);
     [power,testing] = PowerControl(vals,power,no_BS,N,distance,n);
     
 end

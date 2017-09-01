@@ -25,15 +25,27 @@ if (anyRepeated >0)
     vals = values;
     
     for i = 1:no_BS
+        for j = 1:no_BS
+            index = find(idxfinder(:,i) == vals(j));
+            if (index >= 0)
+                idx(i) = index;
+            end
+            
+        end
+    end
+    %{
+    for i = 1:no_BS
         index = find(idxfinder == vals(i));
+       % disp(index);
         remainder = rem(index,no_BS);
-        if remainder == 0
+        if (remainder == 0)
             idx(i) = no_BS;
-        else
+        elseif (remainder ~= 0)
             idx(i) = remainder;
         end
     end
-    
+    idx = flipud(idx);
+    %}
 end
 
 
