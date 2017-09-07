@@ -1,12 +1,10 @@
-clear
-runtime = 100000;
+runtime = 1;
 prop = zeros(runtime,1);
 
 for i = 1:runtime
-    
-    N = 3; %number of mobiles
-    no_BS = 3;%number of base station
-    n = 4; %at free space (n value varies)
+    N = 2; %number of mobiles
+    no_BS = 2;%number of base station
+    n = 3; %at free space (n value varies)
     
     %create random mobile position
     [x,y] = create_mobile(N,0);
@@ -30,11 +28,5 @@ for i = 1:runtime
     [vals,idx,vector] = getConnection(A,no_BS);
     %new_p = ones(1,no_BS);
     %[power,testing] = PowerControl(vals,power,no_BS,N,distance,n);
-    new_v = 10*log10(vals);
-    for j = 1:no_BS
-        if (new_v(j) > 5)
-            prop(i) = prop(i)+1;
-        end
-    end
     
 end

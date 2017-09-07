@@ -4,7 +4,7 @@ function [power,testing] = PowerControl(vals,power,no_BS,N,distance,n)
 [high, h_index] = max(vals, [], 1);
 
 power_ratio = sqrt(low/high);
-disp(power_ratio);
+
 if (no_BS == 2)
     power(h_index) = power_ratio*power(l_index);
 end
@@ -23,10 +23,9 @@ if(no_BS > 2)
 end
 
 
-disp(vals);
 testing = Downlink(no_BS,N,distance,n,power);
 
-disp(10*log10(testing));
+%disp(10*log10(testing));
 
 end
 
