@@ -33,15 +33,12 @@ if (anyRepeated >0)
         vals = values;
         
         for i = 1:no_BS
+            
             if (range(idxfinder(i,:))) == 0
                 idx(i) = i;
             else
-                for j = 1:no_BS
-                    index = find(idxfinder(i,:) == vals(j));
-                    if (index >= 0)
-                        idx(i) = index(1);
-                    end
-                end
+                [idx] = findIndex(idxfinder,vals,no_BS);
+
             end
         end
     end
