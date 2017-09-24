@@ -16,7 +16,7 @@ for i = 1:runtime
         no_BS = N;
         [BS_X,BS_Y] = BS_LIST(no_BS);
     end
-    %basic power is 1
+    %set initial powers
     power = ones(1,no_BS);
     
     %calculate the distance between each base station and mobile

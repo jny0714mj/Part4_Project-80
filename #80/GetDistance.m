@@ -2,6 +2,7 @@ function [distance] = GetDistance(x,y,N,BS_X,BS_Y,no_BS)
 
 %set distance array
 distance = zeros(no_BS,N);
+
 %distance(N,1) -> for base-station 1 Nth mobile
 %distance(N,2) -> for base-station 2 Nth mobile
 %eg) distance(2,1) -> distance between 1st mobile to 2nd base station

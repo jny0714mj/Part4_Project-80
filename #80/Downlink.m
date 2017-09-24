@@ -10,10 +10,10 @@ if (no_BS <= N)
     for i = 1:N
         for j = 1:no_BS
            desire = power(j)/(distance(j,i)^n); %desired signal strength
-           interference = 0;
+           interference = 0;    %initialise the interference signal strength
             for k = 1:no_BS
                 if (k ~= j)
-                    interference = interference + (power(k))/((distance(k,i))^n);
+                    interference = interference + (power(k))/((distance(k,i))^n);%add up all the interference signal strength
                 end
             end
             DOWN(j,i) = (desire/interference);

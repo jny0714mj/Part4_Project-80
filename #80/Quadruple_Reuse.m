@@ -1,6 +1,8 @@
 function [power] = Quadruple_Reuse(PathGain,idx)
+%To find the transmitting power of base stations to balance out the SIR
+%values in Quadruple reuse
 
-
+%define coefficients for polynominal equations
 a1 = PathGain(1,idx(1))*PathGain(1,idx(4));
 b1 = PathGain(2,idx(4))*PathGain(1,idx(1));
 c1 = PathGain(3,idx(4))*PathGain(1,idx(1));
@@ -24,6 +26,8 @@ f3 = PathGain(4,idx(4))*PathGain(4,idx(3));
 
 now = 1;
 
+%find the roots of each polynominal that corresponding to each base
+%station's transmitting power
 if (now == 1)
     p1 = [a1 (b1+c1) (-d1-e1-f1)];
     r = roots(p1);
@@ -47,6 +51,7 @@ prev_r = 1;
 prev_r2 = 1;
 prev_r3 = 1;
 
+%iterative process to find transmitting powers
 while ((r(2) ~= prev_r) & (r2(2) ~= prev_r2) & (r3() ~= prev_r3))
     if (now == 1)
         p1 = [a1 (b1*r2(2)+c1*r3(2)) (-d1*r2(2)-e1*r3(2)-f1)];
@@ -70,9 +75,9 @@ while ((r(2) ~= prev_r) & (r2(2) ~= prev_r2) & (r3() ~= prev_r3))
 end
 
 power = ones(1,4);
-power(1) = r(2);
-power(2) = r2(2);
-power(3) = r3(2);
+power(1) = r(2);    %power for base station1
+power(2) = r2(2);   %power for base station2
+power(3) = r3(2);   %power for base station3
 
 
 end

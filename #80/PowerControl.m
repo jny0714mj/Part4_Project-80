@@ -17,17 +17,18 @@ for i = 1:no_BS
    end
 end
 
-if (no_BS == 2)
+if (no_BS == 2) %when number of base station is 2
     power_ratio = sqrt(low/high);
     power(h_index) = power_ratio*power(l_index);
     
-elseif(no_BS == 3)
+elseif(no_BS == 3) %when number of base station is 3
     power = TripleReuse(PathGain,idx);
     
-elseif(no_BS == 4)
+elseif(no_BS == 4)  %when number of base station is 4
     power = Quadruple_Reuse(PathGain,idx);
 end
 
+%recalculating the SIR values with new transmitting power values
 nSIR = Downlink(no_BS,N,distance,n,power);
 
 end

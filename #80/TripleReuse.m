@@ -1,5 +1,8 @@
 function [power] = TripleReuse(PathGain,idx)
-%
+%To find the transmitting power of base stations to balance out the SIR
+%values in triple reuse
+
+%define coefficients for polynominal equations
 a1 = PathGain(1,idx(1))*PathGain(1,idx(3));
 b1 = PathGain(2,idx(3))*PathGain(1,idx(1));
 c1 = PathGain(3,idx(3))*PathGain(2,idx(1));
@@ -10,6 +13,8 @@ c2 = PathGain(1,idx(2))*PathGain(3,idx(3));
 d2 = PathGain(3,idx(3))*PathGain(3,idx(2));
 
 now = 1;
+%find the roots of each polynominal that corresponding to each base
+%station's transmitting power
 
 if (now == 1)
     p1 = [a1 b1 (-c1-d1)];
@@ -27,7 +32,7 @@ end
 prev_r = 1;
 prev_r2 = 1;
 
-%until 
+%iterative process to find transmitting powers
 while ((r(2) ~= prev_r) & (r2(2) ~= prev_r2))
     if (now == 1)
         p1 = [a1 b1*r2(2) (-c1*r2(2)-d1)];
@@ -45,7 +50,7 @@ while ((r(2) ~= prev_r) & (r2(2) ~= prev_r2))
 end
 
 power = ones(1,3);
-power(1) = r(2);
-power(2) = r2(2);
+power(1) = r(2);    %power for base station1
+power(2) = r2(2);   %power for base station2
 
 end
