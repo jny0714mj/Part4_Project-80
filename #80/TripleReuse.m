@@ -1,5 +1,5 @@
 function [power] = TripleReuse(PathGain,idx)
-
+%
 a1 = PathGain(1,idx(1))*PathGain(1,idx(3));
 b1 = PathGain(2,idx(3))*PathGain(1,idx(1));
 c1 = PathGain(3,idx(3))*PathGain(2,idx(1));
@@ -27,6 +27,7 @@ end
 prev_r = 1;
 prev_r2 = 1;
 
+%until 
 while ((r(2) ~= prev_r) & (r2(2) ~= prev_r2))
     if (now == 1)
         p1 = [a1 b1*r2(2) (-c1*r2(2)-d1)];

@@ -1,39 +1,48 @@
-function [vals,idx,vector] = getConnection(temp,no_BS)
-idxfinder = temp;
-[vals,idx] = max(temp,[],2);
-anyRepeated = ~all(diff(sort(idx)));
+function [vals,idx,vector] = getConnection(SIR,no_BS)
+%To find the best combination and index of SIR values
+
+idxfinder = SIR;
 values = [];
 vector = 0;
+
+[vals,idx] = max(SIR,[],2);
+anyRepeated = ~all(diff(sort(idx))); %see if more than one base stations or mobiles have paired up with same device
+
+%if more than one mobiles or base stations paired up with same device
 if (anyRepeated >0)
     vector = 1;
-    if (range(temp) == 0)
+    
+    %when all SIR values are same
+    if (range(SIR) == 0)
         for k = 1:no_BS
-            vals(k) = temp(1,1);
+            vals(k) = SIR(1,1);
             idx(k) = k;
             vector = 0;
         end
         
     else
+        %find the values
         for i = 1:no_BS
-            [row,column] = size(temp);
-            themax = max(max(temp));
+            [row,column] = size(SIR);
+            themax = max(max(SIR));
             values = [values,themax];
-            index = find(temp == themax);
+            index = find(SIR == themax);
             remainder = rem(index(1),row);
             round = ceil(index(1)/column);
             if (remainder > 0)
-                temp(remainder,:) = [];
+                SIR(remainder,:) = [];
                 
             elseif (remainder == 0)
-                temp(row,:) = [];
+                SIR(row,:) = [];
             end
-            temp(:,round) = [];
+            SIR(:,round) = [];
         end
         
         vals = values;
         
         for i = 1:no_BS
-            
+            %when all receivers are receiving same SIR value
+            %from same base station
             if (range(idxfinder(i,:))) == 0
                 idx(i) = i;
             else
